@@ -12,7 +12,7 @@ import java.awt.event.*;
 import javax.imageio.*;
 import java.io.*;
 
-public class SCTilePalette
+public class SCTilePalette implements SCConstants
 {
    private SCTileStamp[][] stampArr;
    private int tilesWide;
@@ -23,6 +23,11 @@ public class SCTilePalette
    public SCTilePalette(String fileName, int tileWidthPx, int tileHeightPx, int bgRGB)
    {
       set(fileName, tileWidthPx, tileHeightPx, bgRGB);
+   }
+   
+   public SCTilePalette(String fileName, int tileWidthPx, int tileHeightPx)
+   {
+      this(fileName, tileWidthPx, tileHeightPx, DEFAULT_BG_COLOR);
    }
    
    // set from image file
@@ -51,7 +56,7 @@ public class SCTilePalette
       if(SCTilePalette.class.getResource("SCTilePalette.class").toString().contains(".jar"))
          fileLoc = fileName;
       else
-         fileLoc = "./StrictCurses/" + fileName;
+         fileLoc = "./" + fileName;
       BufferedImage img = null;
       try
       {
@@ -81,14 +86,22 @@ public class SCTilePalette
       return null;
    }
    
+   // check location is in bounds
    public boolean isInBounds(int x, int y)
    {
       return x >= 0 && x < tilesWide &&
          y >= 0 && y < tilesTall;
    }
    
+   // check location is in bounds
    public boolean isInBounds(int index)
    {
       return index >= 0 && index < tilesWide * tilesTall;
+   }
+   
+   // main for testing
+   public static void main(String[] args)
+   {
+      SCTilePalette p = new SCTilePalette("WidlerTiles_16x16.png", 16, 16, DEFAULT_BG_COLOR);
    }
 }
