@@ -17,7 +17,7 @@ public class SCPanel extends JPanel implements SCConstants
 {
    private SCTileStruct[][] structArr;
    private SCTilePalette palette;
-   private BufferedImage image;
+   private BufferedImage baseImage;
    private double sizeRatio;
    private int tilesWide;
    private int tilesTall;
@@ -56,12 +56,12 @@ public class SCPanel extends JPanel implements SCConstants
              y >= 0 && y < tilesTall;
    }
    
-   // overwrite any existing base image and create the whole thing
+   // overwrite any existing base baseImage and create the whole thing
    public void createBaseImage()
    {
       int w = tilesWide * getTileWidth();
       int h = tilesTall * getTileHeight();
-      image = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+      baseImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
       for(int x = 0; x < tilesWide; x++)
       for(int y = 0; y < tilesTall; y++)
       {
@@ -69,7 +69,7 @@ public class SCPanel extends JPanel implements SCConstants
       }
    }
    
-   // set a single tile on the base image
+   // set a single tile on the base baseImage
    private void setBaseTile(int x, int y)
    {
       if(isInBounds(x, y))
@@ -77,7 +77,7 @@ public class SCPanel extends JPanel implements SCConstants
          SCTileStamp stamp = palette.getStamp(structArr[x][y].getCharacterIndex());
          int fg = structArr[x][y].getFGRGB();
          int bg = structArr[x][y].getBGRGB();
-         stamp.stampImage(x * getTileWidth(), y * getTileHeight(), image, fg, bg);
+         stamp.stampImage(x * getTileWidth(), y * getTileHeight(), baseImage, fg, bg);
       }
    }
 }
