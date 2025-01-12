@@ -39,6 +39,7 @@ public class SCPanel extends JPanel implements SCConstants
       for(int y = 0; y < tilesTall; y++)
          structArr[x][y] = new SCTileStruct();
       createBaseImage();
+      setBackground(new Color(DEFAULT_BG_COLOR));
    }
    
    public int getTileWidth()
