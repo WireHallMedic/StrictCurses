@@ -30,6 +30,16 @@ public class SCTilePalette implements SCConstants
       this(fileName, tileWidthPx, tileHeightPx, DEFAULT_BG_COLOR);
    }
    
+   public int getTileWidth()
+   {
+      return tileWidth;
+   }
+   
+   public int getTileHeight()
+   {
+      return tileHeight;
+   }
+   
    // set from image file
    public void set(String fileName, int tileWidthPx, int tileHeightPx, int bgRGB)
    {

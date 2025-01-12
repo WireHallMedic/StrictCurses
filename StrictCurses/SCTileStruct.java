@@ -6,7 +6,7 @@ We store these as the individual tile values are not otherwise stored.
 
 package StrictCurses;
 
-public class SCTileStruct
+public class SCTileStruct implements SCConstants
 {
 	private int characterIndex;
 	private int fgRGB;
@@ -21,6 +21,11 @@ public class SCTileStruct
 	public void setCharacterIndex(int c){characterIndex = c;}
 	public void setFGRGB(int fg){fgRGB = fg;}
 	public void setBGRGB(int bg){bgRGB = bg;}
+   
+   public SCTileStruct()
+   {
+      this(0, DEFAULT_FG_COLOR, DEFAULT_BG_COLOR);
+   }
    
    public SCTileStruct(int i, int fg, int bg)
    {
