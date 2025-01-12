@@ -15,7 +15,7 @@ import java.awt.image.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class SCPanel extends JPanel implements SCConstants, MouseMotionListener
+public class SCPanel extends JPanel implements SCConstants, MouseMotionListener, MouseListener
 {
    private SCTileStruct[][] structArr;
    private SCTilePalette palette;
@@ -58,6 +58,7 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener
       mouseLocTileX = -1;
       mouseLocTileY = -1;
       addMouseMotionListener(this);
+      addMouseListener(this);
    }
    
    public int[] getMouseLocTile()
@@ -229,7 +230,7 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener
       g2d.drawImage(baseImage, imageXInset, imageYInset, imageWidth, imageHeight, null);
    }
    
-   // MouseMotionListener methdos
+   // MouseMotionListener methods
    public void mouseMoved(MouseEvent me)
    {
       double visibleTileWidth = imageWidth / (double)tilesWide;
@@ -243,6 +244,17 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener
       }
    }
    public void mouseDragged(MouseEvent me){}
+   
+   // MouseListener methods
+   public void mouseClicked(MouseEvent me){}
+   public void mousePressed(MouseEvent me){}
+   public void mouseReleased(MouseEvent me){}
+   public void mouseEntered(MouseEvent me){}
+   public void mouseExited(MouseEvent me)
+   {
+      mouseLocTileX = -1;
+      mouseLocTileY = -1;
+   }
    
    // main for testing
    public static void main(String[] args)
