@@ -139,6 +139,33 @@ public class SCPanel extends JPanel implements SCConstants
       }
    }
    
+   public int getTileIndex(int x, int y)
+   {
+      if(isInBounds(x, y))
+      {
+         return structArr[x][y].getCharacterIndex();
+      }
+      return -1;
+   }
+   
+   public int getTileFGColor(int x, int y)
+   {
+      if(isInBounds(x, y))
+      {
+         return structArr[x][y].getFGRGB();
+      }
+      return -1;
+   }
+   
+   public int getTileBGColor(int x, int y)
+   {
+      if(isInBounds(x, y))
+      {
+         return structArr[x][y].getBGRGB();
+      }
+      return -1;
+   }
+   
    @Override
    public void paint(Graphics g)
    {
