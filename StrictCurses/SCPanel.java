@@ -82,7 +82,7 @@ public class SCPanel extends JPanel implements SCConstants
       }
    }
    
-   // stamp a tile, if the new information is different
+   // update tile, if the new information is different
    public void setTile(int x, int y, int index, int fgRGB, int bgRGB)
    {
       if(isInBounds(x, y) && !structArr[x][y].matches(index, fgRGB, bgRGB))
@@ -136,5 +136,28 @@ public class SCPanel extends JPanel implements SCConstants
       super.paint(g);
       Graphics2D g2d = (Graphics2D)g;
       g2d.drawImage(baseImage, 0, 0, getWidth(), getHeight(), null);
+   }
+   
+   // main for testing
+   public static void main(String[] args)
+   {
+      JFrame frame = new JFrame();
+      frame.setSize(500, 800);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      
+      SCTilePalette palette = new SCTilePalette("WidlerTiles_16x16.png", 16, 16, DEFAULT_BG_COLOR);
+      
+      SCPanel panel = new SCPanel(palette, 16, 16);
+      for(int x = 0; x < 16; x++)
+      for(int y = 0; y < 16; y++)
+      {
+         panel.setTileIndex(x, y, x, y);
+      }
+      for(int x = 0; x < 16; x++)
+         panel.setTileFG(x, 5, Color.CYAN.getRGB());
+      for(int x = 0; x < 16; x++)
+         panel.setTileBG(x, 6, Color.CYAN.getRGB());
+      frame.add(panel);
+      frame.setVisible(true);
    }
 }
