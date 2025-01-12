@@ -1,7 +1,7 @@
 /*
 A class for holding the values for creating a tile; character index, foreground RGB, and background RGB.
 
-We store these as the individual tiles are not stored.
+We store these as the individual tile values are not otherwise stored.
 */
 
 package StrictCurses;
