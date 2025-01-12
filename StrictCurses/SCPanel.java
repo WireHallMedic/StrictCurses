@@ -25,6 +25,14 @@ public class SCPanel extends JPanel implements SCConstants
    private boolean maintainRatio;
    private boolean centerImage;
    
+   public int getTilesWide(){return tilesWide;}
+   public int getTilesTall(){return tilesTall;}
+   public boolean getMaintainRatio(){return maintainRatio;}
+   public boolean getCenterImage(){return centerImage;}
+   
+   public void setMaintainRatio(boolean mr){maintainRatio = mr;}
+   public void setCenterImage(boolean ci){centerImage = ci;}
+   
    public SCPanel(SCTilePalette tilePalette, int widthInTiles, int heightInTiles)
    {
       super();
