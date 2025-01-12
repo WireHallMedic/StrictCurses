@@ -13,8 +13,9 @@ package StrictCurses;
 import javax.swing.*;
 import java.awt.image.*;
 import java.awt.*;
+import java.awt.event.*;
 
-public class SCPanel extends JPanel implements SCConstants
+public class SCPanel extends JPanel implements SCConstants, MouseMotionListener
 {
    private SCTileStruct[][] structArr;
    private SCTilePalette palette;
@@ -28,6 +29,8 @@ public class SCPanel extends JPanel implements SCConstants
    private int imageHeight;
    private int imageXInset;
    private int imageYInset;
+   private int mouseLocTileX;
+   private int mouseLocTileY;
    
    public int getTilesWide(){return tilesWide;}
    public int getTilesTall(){return tilesTall;}
@@ -52,6 +55,15 @@ public class SCPanel extends JPanel implements SCConstants
          structArr[x][y] = new SCTileStruct();
       createBaseImage();
       setBackground(new Color(DEFAULT_BG_COLOR));
+      mouseLocTileX = -1;
+      mouseLocTileY = -1;
+      addMouseMotionListener(this);
+   }
+   
+   public int[] getMouseLocTile()
+   {
+      int[] pos = {mouseLocTileX, mouseLocTileY};
+      return pos;
    }
    
    public int getTileWidth()
@@ -211,6 +223,16 @@ public class SCPanel extends JPanel implements SCConstants
       g2d.drawImage(baseImage, imageXInset, imageYInset, imageWidth, imageHeight, null);
    }
    
+   // MouseMotionListener methdos
+   public void mouseMoved(MouseEvent me)
+   {
+      double visibleTileWidth = imageWidth / (double)tilesWide;
+      double visibleTileHeight = imageHeight / (double)tilesTall;
+      mouseLocTileX = (int)((me.getX() - imageXInset) / visibleTileWidth);
+      mouseLocTileY = (int)((me.getY() - imageYInset) / visibleTileHeight);
+   }
+   public void mouseDragged(MouseEvent me){}
+   
    // main for testing
    public static void main(String[] args)
    {
@@ -232,5 +254,20 @@ public class SCPanel extends JPanel implements SCConstants
          panel.setTileBG(x, 6, Color.CYAN.getRGB());
       frame.add(panel);
       frame.setVisible(true);
+      while(true)
+      {
+         try
+         {
+            Thread.sleep(500);
+            int[] loc = panel.getMouseLocTile();
+            System.out.println(String.format("Mouse at %d, %d", loc[0], loc[1]));
+         }
+         catch(Exception ex)
+         {
+            System.out.println("Exception");
+            return;
+         }
+      }
+      
    }
 }
