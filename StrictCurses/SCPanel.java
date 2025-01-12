@@ -12,6 +12,7 @@ package StrictCurses;
 
 import javax.swing.*;
 import java.awt.image.*;
+import java.awt.*;
 
 public class SCPanel extends JPanel implements SCConstants
 {
@@ -79,5 +80,61 @@ public class SCPanel extends JPanel implements SCConstants
          int bg = structArr[x][y].getBGRGB();
          stamp.stampImage(x * getTileWidth(), y * getTileHeight(), baseImage, fg, bg);
       }
+   }
+   
+   // stamp a tile, if the new information is different
+   public void setTile(int x, int y, int index, int fgRGB, int bgRGB)
+   {
+      if(isInBounds(x, y) && !structArr[x][y].matches(index, fgRGB, bgRGB))
+      {
+         structArr[x][y].set(index, fgRGB, bgRGB);
+         setBaseTile(x, y);
+      }
+   }
+   public void setTile(int x, int y, int xIndex, int yIndex, int fgRGB, int bgRGB)
+   {
+      setTile(x, y, palette.xYToIndex(xIndex, yIndex), fgRGB, bgRGB);
+   }
+   
+   // update tile index and paint, if the new information is different
+   public void setTileIndex(int x, int y, int index)
+   {
+      if(isInBounds(x, y) && !structArr[x][y].matchesIndex(index))
+      {
+         structArr[x][y].setCharacterIndex(index);
+         setBaseTile(x, y);
+      }
+   }
+   public void setTileIndex(int x, int y, int xIndex, int yIndex)
+   {
+      setTileIndex(x, y, palette.xYToIndex(xIndex, yIndex));
+   }
+   
+   // update foreground color and paint, if the new information is different
+   public void setTileFG(int x, int y, int fg)
+   {
+      if(isInBounds(x, y) && !structArr[x][y].matchesFG(fg))
+      {
+         structArr[x][y].setFGRGB(fg);
+         setBaseTile(x, y);
+      }
+   }
+   
+   // update tile index and paint, if the new information is different
+   public void setTileBG(int x, int y, int bg)
+   {
+      if(isInBounds(x, y) && !structArr[x][y].matchesBG(bg))
+      {
+         structArr[x][y].setBGRGB(bg);
+         setBaseTile(x, y);
+      }
+   }
+   
+   @Override
+   public void paint(Graphics g)
+   {
+      super.paint(g);
+      Graphics2D g2d = (Graphics2D)g;
+      g2d.drawImage(baseImage, 0, 0, getWidth(), getHeight(), null);
    }
 }

@@ -34,10 +34,32 @@ public class SCTileStruct implements SCConstants
       setBGRGB(bg);
    }
    
+   public void set(int i, int fg, int bg)
+   {
+      setCharacterIndex(i);
+      setFGRGB(fg);
+      setBGRGB(bg);
+   }
+   
    public boolean matches(int index, int fg, int bg)
    {
-      return index == characterIndex &&
-             fg == fgRGB &&
-             bg == bgRGB;
+      return matchesIndex(index) &&
+             matchesFG(fg) &&
+             matchesBG(bg);
+   }
+   
+   public boolean matchesIndex(int index)
+   {
+      return index == characterIndex;
+   }
+   
+   public boolean matchesFG(int fg)
+   {
+      return fg == fgRGB;
+   }
+   
+   public boolean matchesBG(int bg)
+   {
+      return bg == bgRGB;
    }
 }
