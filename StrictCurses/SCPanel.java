@@ -330,6 +330,44 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
       }
    }
    
+   // returns a list of all the instances of the passed text in the specified box.
+   // Return value is a vector of x, y pairs, as the length is known
+   public Vector<int[]> findText(int originX, int originY, int width, int height, String text)
+   {
+      Vector<int[]> foundList = new Vector<int[]>();
+      int prospectXStart = -1;
+      int prospectYStart = -1;
+      int curLen;
+      for(int y = 0; y < height; y++)
+      {
+         curLen = 0;
+         for(int x = 0; x < width; x++)
+         {
+            if(getTileIndex(x + originX, y + originY) == text.charAt(curLen))
+            {
+               // new prosepct, set the start
+               if(curLen == 0)
+               {
+                  prospectXStart = x + originX;
+                  prospectYStart = y + originY;
+               }
+               curLen++;
+               // if we're at the string length, we have a match
+               if(curLen == text.length())
+               {
+                  int[] hit = {prospectXStart, prospectYStart};
+                  foundList.add(hit);
+                  curLen = 0;
+               }
+            }
+            // character doesn't match, reset current length
+            else
+               curLen = 0;
+         }
+      }
+      return foundList;
+   }
+   
    @Override
    public void paint(Graphics g)
    {
@@ -407,9 +445,17 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
       panel3.writeBox(0, 0, 10, 10, str);
       panel3.fillTileBG(0, 0, 10, 10, Color.GRAY.getRGB());
       
-      str = "HereWe'rePuttingTogetherWordsThatAreTooBigForTheBoxThatHasBeenAssignedToContainThem";
+      str = "ThisIsThePlaceForWordsThatAreTooBigForTheBoxThatHasBeenAssignedToContainThem";
       panel3.writeBox(0, 11, 16, 4, str);
       panel3.fillTileBG(0, 11, 16, 4, Color.GRAY.getRGB());
+      
+      Vector<int[]> theList = panel3.findText(0, 11, 16, 4, "The");
+      for(int i = 0; i < theList.size(); i++)
+      {
+         int startX = theList.elementAt(i)[0];
+         int startY = theList.elementAt(i)[1];
+         panel3.fillTileFG(startX, startY, 3, 1, Color.CYAN.getRGB());
+      }
       
       frame.add(panel1);
       frame.add(panel2);
