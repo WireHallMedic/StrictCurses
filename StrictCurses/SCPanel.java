@@ -46,4 +46,37 @@ public class SCPanel extends JPanel implements SCConstants
    {
       return palette.getTileHeight();
    }
+   
+   public boolean isInBounds(int x, int y)
+   {
+      return x >= 0 && x < tilesWide &&
+             y >= 0 && y < tilesTall;
+   }
+   
+   // overwrite any existing base image and create the whole thing
+   public void createBaseImage()
+   {
+      int w = tilesWide * getTileWidth();
+      int h = tilesTall * getTileHeight();
+      baseImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+      for(int x = 0; x < tilesWide; x++)
+      for(int y = 0; y < tilesTall; y++)
+      {
+         setBaseTile(x, y);
+      }
+      redrawF = true;
+   }
+   
+   // set a single tile on the base image
+   private void setBaseTile(int x, int y)
+   {
+      if(isInBounds(x, y))
+      {
+         SCTileStamp stamp = palette.getStamp(structArr[x][y].getCharacterIndex());
+         int fg = structArr[x][y].getFGRGB();
+         int bg = structArr[x][y].getBGRGB();
+         stamp.stampImage(x * getTileWidth(), y * getTileHeight(), baseImage, fg, bg);
+         redrawF = true;
+      }
+   }
 }

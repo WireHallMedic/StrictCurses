@@ -109,6 +109,11 @@ public class SCTilePalette implements SCConstants
       return index >= 0 && index < tilesWide * tilesTall;
    }
    
+   public int xYToIndex(int x, int y)
+   {
+      return x + (y * tilesWide);
+   }
+   
    // main for testing
    public static void main(String[] args)
    {
