@@ -1,5 +1,7 @@
 /*
 A class that holds an array of tileStamps. The array is based on an image file at instantiation.
+
+Stamps can be accessed by x, y location on sheet, or single index (such as char values)
 */
 
 package StrictCurses;
@@ -61,5 +63,32 @@ public class SCTilePalette
          img = null;
       }
       return img;
+   }
+   
+   // get a stamp by x, y location on palette
+   public SCTileStamp getStamp(int x, int y)
+   {
+      if(isInBounds(x, y))
+         return stampArr[x][y];
+      return null;
+   }
+   
+   // get a stamp by single index
+   public SCTileStamp getStamp(int index)
+   {
+      if(isInBounds(index))
+         return getStamp(index % tilesWide, index / tilesWide);
+      return null;
+   }
+   
+   public boolean isInBounds(int x, int y)
+   {
+      return x >= 0 && x < tilesWide &&
+         y >= 0 && y < tilesTall;
+   }
+   
+   public boolean isInBounds(int index)
+   {
+      return index >= 0 && index < tilesWide * tilesTall;
    }
 }
