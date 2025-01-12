@@ -84,7 +84,7 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
    }
    
    // overwrite any existing base baseImage and create the whole thing
-   public void createBaseImage()
+   private void createBaseImage()
    {
       int w = tilesWide * getTileWidth();
       int h = tilesTall * getTileHeight();
@@ -122,6 +122,20 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
       setTile(x, y, palette.xYToIndex(xIndex, yIndex), fgRGB, bgRGB);
    }
    
+   // sets the tiles in a box of width w and height h, starting at [x, y]
+   public void fillTile(int x, int y, int w, int h, int index, int fgRGB, int bgRGB)
+   {
+      for(int xx = 0; xx < w; xx++)
+      for(int yy = 0; yy < h; yy++)
+         setTile(xx + x, yy + y, index, fgRGB, bgRGB);
+   }
+   public void fillTile(int x, int y, int w, int h, int xIndex, int yIndex, int fgRGB, int bgRGB)
+   {
+      for(int xx = 0; xx < w; xx++)
+      for(int yy = 0; yy < h; yy++)
+         setTile(xx + x, yy + y, xIndex, yIndex, fgRGB, bgRGB);
+   }
+   
    // update tile index and paint, if the new information is different
    public void setTileIndex(int x, int y, int index)
    {
@@ -136,6 +150,20 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
       setTileIndex(x, y, palette.xYToIndex(xIndex, yIndex));
    }
    
+   // sets the tile indexes in a box of width w and height h, starting at [x, y]
+   public void fillTileIndex(int x, int y, int w, int h, int index)
+   {
+      for(int xx = 0; xx < w; xx++)
+      for(int yy = 0; yy < h; yy++)
+         setTileIndex(xx + x, yy + y, index);
+   }
+   public void fillTile(int x, int y, int w, int h, int xIndex, int yIndex)
+   {
+      for(int xx = 0; xx < w; xx++)
+      for(int yy = 0; yy < h; yy++)
+         setTileIndex(xx + x, yy + y, xIndex, yIndex);
+   }
+   
    // update foreground color and paint, if the new information is different
    public void setTileFG(int x, int y, int fg)
    {
@@ -146,6 +174,14 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
       }
    }
    
+   // sets the tile foregrounds in a box of width w and height h, starting at [x, y]
+   public void fillTileFG(int x, int y, int w, int h, int fg)
+   {
+      for(int xx = 0; xx < w; xx++)
+      for(int yy = 0; yy < h; yy++)
+         setTileFG(xx + x, yy + y, fg);
+   }
+   
    // update tile index and paint, if the new information is different
    public void setTileBG(int x, int y, int bg)
    {
@@ -154,6 +190,14 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
          structArr[x][y].setBGRGB(bg);
          setBaseTile(x, y);
       }
+   }
+   
+   // sets the tile foregrounds in a box of width w and height h, starting at [x, y]
+   public void fillTileBG(int x, int y, int w, int h, int bg)
+   {
+      for(int xx = 0; xx < w; xx++)
+      for(int yy = 0; yy < h; yy++)
+         setTileBG(xx + x, yy + y, bg);
    }
    
    public int getTileIndex(int x, int y)
@@ -289,6 +333,9 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
          panel1.setTileBG(x, 6, Color.CYAN.getRGB());
          panel2.setTileBG(x, 6, Color.CYAN.getRGB());
       }
+      
+      panel1.fillTileFG(0, 0, 4, 4, Color.MAGENTA.getRGB());
+      panel1.fillTileBG(2, 2, 4, 4, Color.YELLOW.getRGB());
       
       frame.add(panel1);
       frame.add(panel2);
