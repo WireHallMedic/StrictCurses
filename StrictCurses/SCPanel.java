@@ -303,8 +303,21 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
          {
             for(int i = 0; i < curStr.length(); i++)
             {
-               setTileIndex(startX + colNum, startY + rowNum, curStr.charAt(i));
-               colNum++;
+               // newline
+               if(curStr.charAt(i) == '\n')
+               {
+                  if(colNum != 0)
+                  {
+                     colNum = 0;
+                     rowNum++;
+                  }
+               }
+               else
+               {
+                  // write character
+                  setTileIndex(startX + colNum, startY + rowNum, curStr.charAt(i));
+                  colNum++;
+               }
             }
             // put a space, if there's room
             if(colNum < width - 1)
@@ -441,7 +454,7 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
       panel1.fillTileFG(0, 0, 4, 4, Color.MAGENTA.getRGB());
       panel1.fillTileBG(2, 2, 4, 4, Color.YELLOW.getRGB());
       
-      String str = "The quick brown fox jumped over the lazy dog's back.";
+      String str = "The quick brown\nfox jumped over the lazy dog's back.";
       panel3.writeBox(0, 0, 10, 10, str);
       panel3.fillTileBG(0, 0, 10, 10, Color.GRAY.getRGB());
       
