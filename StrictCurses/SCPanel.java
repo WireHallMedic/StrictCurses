@@ -23,17 +23,24 @@ public class SCPanel extends JPanel implements SCConstants
    private int tilesWide;
    private int tilesTall;
    private boolean redrawF;
+   private boolean maintainRatio;
+   private boolean centerImage;
    
    public SCPanel(SCTilePalette tilePalette, int widthInTiles, int heightInTiles)
    {
       super();
+      maintainRatio = true;
+      centerImage = true;
       palette = tilePalette;
       tilesWide = widthInTiles;
       tilesTall = heightInTiles;
+      sizeRatio = (double)(tilesWide * getTileWidth()) / (double)(tilesTall * getTileHeight());
       structArr = new SCTileStruct[tilesWide][tilesTall];
       for(int x = 0; x < tilesWide; x++)
       for(int y = 0; y < tilesTall; y++)
          structArr[x][y] = new SCTileStruct();
+      createBaseImage();
+      createResizedImage();
       redrawF = true;
    }
    
@@ -65,6 +72,18 @@ public class SCPanel extends JPanel implements SCConstants
          setBaseTile(x, y);
       }
       redrawF = true;
+   }
+   
+   private void createResizedImage()
+   {
+      if(maintainRatio)
+      {
+         
+      }
+      else
+      {
+         
+      }
    }
    
    // set a single tile on the base image
