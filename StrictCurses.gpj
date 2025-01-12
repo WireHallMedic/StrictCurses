@@ -13,7 +13,15 @@ s#i0
 s#k0
 s#j0
 s#l0
-!36;g
+!179;g
+%\011StrictCurses%sSCPanel.java
+%\011StrictCurses%sSCTilePalette.java
 %\011StrictCurses%sSCConstants.java
-!36;f
+%\011StrictCurses%sSCTileStruct.java
+%\011StrictCurses%sSCTileStamp.java
+!179;f
+%\011StrictCurses%sSCPanel.java
+%\011StrictCurses%sSCTilePalette.java
 %\011StrictCurses%sSCConstants.java
+%\011StrictCurses%sSCTileStruct.java
+%\011StrictCurses%sSCTileStamp.java
