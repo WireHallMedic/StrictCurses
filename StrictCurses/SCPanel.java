@@ -214,6 +214,12 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener
       imageYInset = yInset;
    }
    
+   public void writeLine(int startX, int startY, String str)
+   {
+      for(int i = 0; i < str.length(); i++)
+         setTileIndex(startX + i, startY, str.charAt(i));
+   }
+   
    @Override
    public void paint(Graphics g)
    {
@@ -244,28 +250,45 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener
       JFrame frame = new JFrame();
       frame.setSize(500, 800);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setLayout(new GridLayout(1, 2));
       
       SCTilePalette palette = new SCTilePalette("WidlerTiles_16x16.png", 16, 16, DEFAULT_BG_COLOR);
       
-      SCPanel panel = new SCPanel(palette, 16, 16);
+      SCPanel panel1 = new SCPanel(palette, 16, 17);
+      SCPanel panel2 = new SCPanel(palette, 16, 17);
+      panel2.setMaintainRatio(false);
+      
+      panel1.writeLine(0, 0, " Maintain Ratio");
+      panel2.writeLine(0, 0, " Don't Maintain");
+      
       for(int x = 0; x < 16; x++)
       for(int y = 0; y < 16; y++)
       {
-         panel.setTileIndex(x, y, x, y);
+         panel1.setTileIndex(x, y + 1, x, y);
+         panel2.setTileIndex(x, y + 1, x, y);
       }
       for(int x = 0; x < 16; x++)
-         panel.setTileFG(x, 5, Color.CYAN.getRGB());
+      {
+         panel1.setTileFG(x, 5, Color.CYAN.getRGB());
+         panel2.setTileFG(x, 5, Color.CYAN.getRGB());
+      }
       for(int x = 0; x < 16; x++)
-         panel.setTileBG(x, 6, Color.CYAN.getRGB());
-      frame.add(panel);
+      {
+         panel1.setTileBG(x, 6, Color.CYAN.getRGB());
+         panel2.setTileBG(x, 6, Color.CYAN.getRGB());
+      }
+      
+      frame.add(panel1);
+      frame.add(panel2);
       frame.setVisible(true);
       while(true)
       {
          try
          {
             Thread.sleep(500);
-            int[] loc = panel.getMouseLocTile();
-            System.out.println(String.format("Mouse at %d, %d", loc[0], loc[1]));
+            int[] loc = panel1.getMouseLocTile();
+            int[] loc2 = panel2.getMouseLocTile();
+            System.out.println(String.format("Mouse at [%d, %d], [%d, %d]", loc[0], loc[1], loc2[0], loc2[1]));
          }
          catch(Exception ex)
          {
