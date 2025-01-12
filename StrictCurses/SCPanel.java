@@ -230,6 +230,11 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener
       double visibleTileHeight = imageHeight / (double)tilesTall;
       mouseLocTileX = (int)((me.getX() - imageXInset) / visibleTileWidth);
       mouseLocTileY = (int)((me.getY() - imageYInset) / visibleTileHeight);
+      if(!isInBounds(mouseLocTileX, mouseLocTileY))
+      {
+         mouseLocTileX = -1;
+         mouseLocTileY = -1;
+      }
    }
    public void mouseDragged(MouseEvent me){}
    
