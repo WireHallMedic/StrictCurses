@@ -135,7 +135,31 @@ public class SCPanel extends JPanel implements SCConstants
    {
       super.paint(g);
       Graphics2D g2d = (Graphics2D)g;
-      g2d.drawImage(baseImage, 0, 0, getWidth(), getHeight(), null);
+      int w = getWidth();
+      int h = getHeight();
+      int xInset = 0;
+      int yInset = 0;
+      if(maintainRatio)
+      {
+         // limit by height
+         if((getWidth() / sizeRatio) > getHeight())
+         {
+            h = getHeight();
+            w = (int)(h * sizeRatio);
+         }
+         // limit by width
+         else
+         {
+            w = getWidth();
+            h = (int)(w / sizeRatio);
+         }
+         if(centerImage)
+         {
+            xInset = (getWidth() - w) / 2;
+            yInset = (getHeight() - h) / 2;
+         }
+      }
+      g2d.drawImage(baseImage, xInset, yInset, w, h, null);
    }
    
    // main for testing
