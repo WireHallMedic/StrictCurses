@@ -19,7 +19,20 @@ public class SCTileStruct
 
 
 	public void setCharacterIndex(int c){characterIndex = c;}
-	public void setFGRGB(int f){fgRGB = f;}
-	public void setBGRGB(int b){bgRGB = b;}
+	public void setFGRGB(int fg){fgRGB = fg;}
+	public void setBGRGB(int bg){bgRGB = bg;}
    
+   public SCTileStruct(int i, int fg, int bg)
+   {
+      setCharacterIndex(i);
+      setFGRGB(fg);
+      setBGRGB(bg);
+   }
+   
+   public boolean matches(int index, int fg, int bg)
+   {
+      return index == characterIndex &&
+             fg == fgRGB &&
+             bg == bgRGB;
+   }
 }
