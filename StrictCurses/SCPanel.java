@@ -14,6 +14,7 @@ import javax.swing.*;
 import java.awt.image.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class SCPanel extends JPanel implements SCConstants, MouseMotionListener, MouseListener
 {
@@ -259,10 +260,74 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
       imageYInset = yInset;
    }
    
+   // write a string on a single line
    public void writeLine(int startX, int startY, String str)
    {
       for(int i = 0; i < str.length(); i++)
          setTileIndex(startX + i, startY, str.charAt(i));
+   }
+   
+   // write a string bound within a box, breaking on newlines and as needed
+   public void writeBox(int startX, int startY, int width, int height, String str)
+   {
+      // split the string on spaces
+      String[] splitList = str.split(" ");
+      Vector<String> strList = new Vector<String>();
+      // make list of words
+      for(int i = 0; i < splitList.length; i++)
+      {
+         // short words go on list
+         if(splitList[i].length() < width)
+            strList.add(splitList[i]);
+         // long words are chopped up and put on list
+         else
+         {
+            String longStr = splitList[i];
+            while(longStr.length() >= width)
+            {
+               strList.add(longStr.substring(0, width - 1));
+               longStr = longStr.substring(width - 1, longStr.length());
+            }
+            strList.add(longStr);
+         }
+      }
+      
+      int rowNum = 0;
+      int colNum = 0;
+      int curWordIndex = 0;
+      while(rowNum < height && curWordIndex < strList.size())
+      {
+         String curStr = strList.elementAt(curWordIndex);
+         // write a word, if there's room
+         if(colNum + curStr.length() <= width)
+         {
+            for(int i = 0; i < curStr.length(); i++)
+            {
+               setTileIndex(startX + colNum, startY + rowNum, curStr.charAt(i));
+               colNum++;
+            }
+            // put a space, if there's room
+            if(colNum < width - 1)
+            {
+               setTileIndex(startX + colNum, startY + rowNum, ' ');
+               colNum++;
+            }
+            // no room for space means end of line
+            else
+            {
+               colNum = 0;
+               rowNum++;
+            }
+            // next word
+            curWordIndex++;
+         }
+         // no room for word, do carriage return
+         else
+         {
+            colNum = 0;
+            rowNum++;
+         }
+      }
    }
    
    @Override
@@ -304,14 +369,15 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
    public static void main(String[] args)
    {
       JFrame frame = new JFrame();
-      frame.setSize(500, 800);
+      frame.setSize(1500, 800);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setLayout(new GridLayout(1, 2));
+      frame.setLayout(new GridLayout(1, 3));
       
       SCTilePalette palette = new SCTilePalette("WidlerTiles_16x16.png", 16, 16, DEFAULT_BG_COLOR);
       
       SCPanel panel1 = new SCPanel(palette, 16, 17);
       SCPanel panel2 = new SCPanel(palette, 16, 17);
+      SCPanel panel3 = new SCPanel(palette, 16, 17);
       panel2.setMaintainRatio(false);
       
       panel1.writeLine(0, 0, " Maintain Ratio");
@@ -337,17 +403,26 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
       panel1.fillTileFG(0, 0, 4, 4, Color.MAGENTA.getRGB());
       panel1.fillTileBG(2, 2, 4, 4, Color.YELLOW.getRGB());
       
+      String str = "The quick brown fox jumped over the lazy dog's back.";
+      panel3.writeBox(0, 0, 10, 10, str);
+      panel3.fillTileBG(0, 0, 10, 10, Color.GRAY.getRGB());
+      
+      str = "HereWe'rePuttingTogetherWordsThatAreTooBigForTheBoxThatHasBeenAssignedToContainThem";
+      panel3.writeBox(0, 11, 16, 4, str);
+      panel3.fillTileBG(0, 11, 16, 4, Color.GRAY.getRGB());
+      
       frame.add(panel1);
       frame.add(panel2);
+      frame.add(panel3);
       frame.setVisible(true);
       while(true)
       {
          try
          {
-            Thread.sleep(500);
-            int[] loc = panel1.getMouseLocTile();
-            int[] loc2 = panel2.getMouseLocTile();
-            System.out.println(String.format("Mouse at [%d, %d], [%d, %d]", loc[0], loc[1], loc2[0], loc2[1]));
+//             Thread.sleep(500);
+//             int[] loc = panel1.getMouseLocTile();
+//             int[] loc2 = panel2.getMouseLocTile();
+//             System.out.println(String.format("Mouse at [%d, %d], [%d, %d]", loc[0], loc[1], loc2[0], loc2[1]));
          }
          catch(Exception ex)
          {
