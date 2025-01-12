@@ -20,6 +20,12 @@ public class SCTilePalette
    
    public SCTilePalette(String fileName, int tileWidthPx, int tileHeightPx, int bgRGB)
    {
+      set(fileName, tileWidthPx, tileHeightPx, bgRGB);
+   }
+   
+   // set from image file
+   public void set(String fileName, int tileWidthPx, int tileHeightPx, int bgRGB)
+   {
       BufferedImage sheetImage = loadImage(fileName);
       if(sheetImage != null)
       {
