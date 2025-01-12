@@ -24,6 +24,10 @@ public class SCPanel extends JPanel implements SCConstants
    private int tilesTall;
    private boolean maintainRatio;
    private boolean centerImage;
+   private int imageWidth;
+   private int imageHeight;
+   private int imageXInset;
+   private int imageYInset;
    
    public int getTilesWide(){return tilesWide;}
    public int getTilesTall(){return tilesTall;}
@@ -166,11 +170,8 @@ public class SCPanel extends JPanel implements SCConstants
       return -1;
    }
    
-   @Override
-   public void paint(Graphics g)
+   private void setImageProperties()
    {
-      super.paint(g);
-      Graphics2D g2d = (Graphics2D)g;
       int w = getWidth();
       int h = getHeight();
       int xInset = 0;
@@ -195,7 +196,19 @@ public class SCPanel extends JPanel implements SCConstants
             yInset = (getHeight() - h) / 2;
          }
       }
-      g2d.drawImage(baseImage, xInset, yInset, w, h, null);
+      imageWidth = w;
+      imageHeight = h;
+      imageXInset = xInset;
+      imageYInset = yInset;
+   }
+   
+   @Override
+   public void paint(Graphics g)
+   {
+      super.paint(g);
+      Graphics2D g2d = (Graphics2D)g;
+      setImageProperties();
+      g2d.drawImage(baseImage, imageXInset, imageYInset, imageWidth, imageHeight, null);
    }
    
    // main for testing
