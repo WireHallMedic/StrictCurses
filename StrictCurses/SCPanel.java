@@ -17,12 +17,10 @@ public class SCPanel extends JPanel implements SCConstants
 {
    private SCTileStruct[][] structArr;
    private SCTilePalette palette;
-   private BufferedImage resizedImage;
-   private BufferedImage baseImage;
+   private BufferedImage image;
    private double sizeRatio;
    private int tilesWide;
    private int tilesTall;
-   private boolean redrawF;
    private boolean maintainRatio;
    private boolean centerImage;
    
@@ -40,8 +38,6 @@ public class SCPanel extends JPanel implements SCConstants
       for(int y = 0; y < tilesTall; y++)
          structArr[x][y] = new SCTileStruct();
       createBaseImage();
-      createResizedImage();
-      redrawF = true;
    }
    
    public int getTileWidth()
@@ -65,24 +61,11 @@ public class SCPanel extends JPanel implements SCConstants
    {
       int w = tilesWide * getTileWidth();
       int h = tilesTall * getTileHeight();
-      baseImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+      image = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
       for(int x = 0; x < tilesWide; x++)
       for(int y = 0; y < tilesTall; y++)
       {
          setBaseTile(x, y);
-      }
-      redrawF = true;
-   }
-   
-   private void createResizedImage()
-   {
-      if(maintainRatio)
-      {
-         
-      }
-      else
-      {
-         
       }
    }
    
@@ -94,8 +77,7 @@ public class SCPanel extends JPanel implements SCConstants
          SCTileStamp stamp = palette.getStamp(structArr[x][y].getCharacterIndex());
          int fg = structArr[x][y].getFGRGB();
          int bg = structArr[x][y].getBGRGB();
-         stamp.stampImage(x * getTileWidth(), y * getTileHeight(), baseImage, fg, bg);
-         redrawF = true;
+         stamp.stampImage(x * getTileWidth(), y * getTileHeight(), image, fg, bg);
       }
    }
 }
