@@ -14,12 +14,23 @@ public class SCTileStamp implements SCConstants
 	public int getHeight(){return height;}
 
    
-   public SCTileStamp(int w, int h)
+   public SCTileStamp(BufferedImage img)
    {
       width = -1;
       height = -1;
+      if(img != null)
+         set(img);
    }
    
+   public SCTileStamp(BufferedImage img, int bgRGB)
+   {
+      width = -1;
+      height = -1;
+      if(img != null)
+         set(img, bgRGB);
+   }
+   
+   // set based on passed image
    public void set(BufferedImage img, int bgRGB)
    {
       width = img.getWidth();
@@ -33,4 +44,17 @@ public class SCTileStamp implements SCConstants
       }
    }
    public void set(BufferedImage img){set(img, Color.BLACK.getRGB());}
+   
+   // apply the stamp, starting at the passed location, to the passed image, in the passed colors
+   public void stampImage(int startX, int startY, BufferedImage image, int fgRGB, int bgRGB)
+   {
+      for(int x = 0; x < width; x++)
+      for(int y = 0; y < height; y++)
+      {
+         if(pixelArr[x][y])
+            image.setRGB(x + startX, y + startY, fgRGB);
+         else
+            image.setRGB(x + startX, y + startY, bgRGB);
+      }
+   }
 }
