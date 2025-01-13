@@ -15,7 +15,7 @@ public interface SCConstants
    public static final int BOX_TILE_ORIGIN = 0 + (11 * 16);
    public static final int WALL_TILE_ORIGIN = 0 + (12 * 16);
 	public static final int WALL_DESCENDING_TILE = 8 + (11 * 16);
-	public static final int WALL_ASCENDING_TILE = 0 + (12 * 16);
+	public static final int WALL_ASCENDING_TILE = 0 + (13 * 16);
    public static final int ADJACENT_LEFT = 8;
    public static final int ADJACENT_RIGHT = 4;
    public static final int ADJACENT_TOP = 2;
@@ -226,7 +226,6 @@ public interface SCConstants
 	public static final int CENTERED_COMMA_TILE = 4 + (11 * 16);
 
 	// row 13
-	public static final int DIAGONAL_DITHERING_TILE = 0 + (13 * 16);
 	public static final int HEAVY_DITHERING_TILE = 1 + (13 * 16);
 	public static final int LIGHT_DITHERING_TILE = 2 + (13 * 16);
 	public static final int TOP_SQUARE_BRACKET_TILE = 3 + (13 * 16);
