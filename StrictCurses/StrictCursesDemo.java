@@ -127,13 +127,13 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
    
    private void setWallTiles()
    {
-      char[][] wallArr = {{' ',' ',' ','#',' ',' ',' '},
-                          {' ','#','#','#','#','#',' '},
-                          {' ','#',' ','#',' ','#',' '},
+      char[][] wallArr = {{' ',' ','#',' ','#','#',' '},
                           {'#','#','#','#','#','#','#'},
-                          {' ','#',' ','#',' ','#',' '},
+                          {'#','#',' ','#',' ','#','#'},
                           {' ','#','#','#','#','#',' '},
-                          {' ',' ',' ','#',' ',' ',' '}};
+                          {'#','#',' ','#',' ','#','#'},
+                          {' ','#','#','#','#','#',' '},
+                          {' ',' ','#',' ','#','#',' '}};
       int width = wallArr.length;
       int height = wallArr[0].length;
       int[][] adjacencyArr = getAdjacencyArray(wallArr);
