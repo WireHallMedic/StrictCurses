@@ -10,6 +10,17 @@ public interface SCConstants
    public static final int DEFAULT_FG_COLOR = Color.WHITE.getRGB();
    
    
+   // tileset constants
+   // box and wall drawing
+   public static final int BOX_TILE_ORIGIN = 0 + (11 * 16);
+   public static final int WALL_TILE_ORIGIN = 0 + (12 * 16);
+	public static final int WALL_DESCENDING_TILE = 8 + (11 * 16);
+	public static final int WALL_ASCENDING_TILE = 0 + (12 * 16);
+   public static final int ADJACENT_LEFT = 8;
+   public static final int ADJACENT_RIGHT = 4;
+   public static final int ADJACENT_TOP = 2;
+   public static final int ADJACENT_BOTTOM = 1;
+   
 	// row 0
 	public static final int BLANK_TILE = 0 + (0 * 16);
 	public static final int BOLT_TILE = 1 + (0 * 16);
@@ -209,13 +220,23 @@ public interface SCConstants
 	public static final int RIGHT_DOUBLE_ANGLE_TILE = 15 + (10 * 16);
 
 	// row 11
-	public static final int LIGHT_SHADE_TILE = 0 + (11 * 16);
-	public static final int MEDIUM_SHADE_TILE = 1 + (11 * 16);
-	public static final int HEAVY_SHADE_TILE = 2 + (11 * 16);
-   
-   // Box-drawing tiles are not named
+	public static final int CENTERD_CARET_TILE = 0 + (11 * 16);
+	public static final int ROTATED_ASTERIX_TILE = 1 + (11 * 16);
+	public static final int RETICLE_TILE = 2 + (11 * 16);
+	public static final int CENTERED_COMMA_TILE = 4 + (11 * 16);
 
 	// row 13
+	public static final int DIAGONAL_DITHERING_TILE = 0 + (13 * 16);
+	public static final int HEAVY_DITHERING_TILE = 1 + (13 * 16);
+	public static final int LIGHT_DITHERING_TILE = 2 + (13 * 16);
+	public static final int TOP_SQUARE_BRACKET_TILE = 3 + (13 * 16);
+	public static final int BOTTOM_SQUARE_BRACKET_TILE = 4 + (13 * 16);
+	public static final int ELEPSIS_TILE = 5 + (13 * 16);
+	public static final int FTRIANGLE_DOTS_TILE = 6 + (13 * 16);
+	public static final int SQUARE_DOTS_TILE = 7 + (13 * 16);
+	public static final int CROSS_TILE = 8 + (13 * 16);
+	public static final int MEDIUM_DITHERING_TILE = 9 + (13 * 16);
+	public static final int BOLD_DITHERING_TILE = 10 + (13 * 16);
 	public static final int FULL_BLOCK_TILE = 11 + (13 * 16);
 	public static final int HALF_BLOCK_BOTTOM_TILE = 12 + (13 * 16);
 	public static final int HALF_BLOCK_LEFT_TILE = 13 + (13 * 16);
