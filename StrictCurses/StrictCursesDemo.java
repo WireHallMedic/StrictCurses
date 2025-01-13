@@ -68,6 +68,9 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
       add(panel2);
       add(panel3);
       setVisible(true);
+      
+      javax.swing.Timer timer = new javax.swing.Timer(1000 / 60, this);
+      timer.start();
       while(true)
       {
          try
@@ -87,6 +90,12 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
    
    public void actionPerformed(ActionEvent ae)
    {
-   
+      int xLoc = Math.max(Math.max(panel1.getMouseLocTile()[0], panel2.getMouseLocTile()[0]), panel3.getMouseLocTile()[0]);
+      int yLoc = Math.max(Math.max(panel1.getMouseLocTile()[1], panel2.getMouseLocTile()[1]), panel3.getMouseLocTile()[1]);
+      int panelNum = 1;
+      if(panel2.getMouseLocTile()[0] != -1)
+         panelNum = 2;
+      if(panel3.getMouseLocTile()[0] != -1)
+         panelNum = 3;
    }
 }
