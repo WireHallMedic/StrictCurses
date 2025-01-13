@@ -127,10 +127,4 @@ public class SCTilePalette implements SCConstants
    {
       return x + (y * tilesWide);
    }
-   
-   // main for testing
-   public static void main(String[] args)
-   {
-      SCTilePalette p = new SCTilePalette("WidlerTiles_16x16.png", 16, 16, DEFAULT_BG_COLOR);
-   }
 }
