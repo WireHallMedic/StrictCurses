@@ -81,6 +81,30 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
       timer.start();
    }
    
+   private int[][] getAdjacencyArray(char[][] map)
+   {
+      int width = map.length;
+      int height = map[0].length;
+      int[][] adjacencyArr = new int[width][height];
+      for(int x = 0; x < width - 1; x++)
+      for(int y = 0; y < height; y++)
+         if(map[x][y] == '#')
+            adjacencyArr[x+1][y] += ADJACENT_LEFT;
+      for(int x = 1; x < width; x++)
+      for(int y = 0; y < height; y++)
+         if(map[x][y] == '#')
+            adjacencyArr[x-1][y] += ADJACENT_RIGHT;
+      for(int x = 0; x < width; x++)
+      for(int y = 0; y < height - 1; y++)
+         if(map[x][y] == '#')
+            adjacencyArr[x][y+1] += ADJACENT_TOP;
+      for(int x = 0; x < width; x++)
+      for(int y = 1; y < height; y++)
+         if(map[x][y] == '#')
+            adjacencyArr[x][y-1] += ADJACENT_BOTTOM;
+      return adjacencyArr;
+   }
+   
    private void setBoxTiles()
    {
       char[][] boxArr = {{'#','#','#','#','#'},
