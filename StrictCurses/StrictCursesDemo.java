@@ -55,20 +55,22 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
       panel1.fillTileBG(2, 2, 4, 4, Color.YELLOW.getRGB());
       
       String str = "The quick brown\nfox jumped over the lazy dog's back.";
-      panel3.writeBox(0, 0, 10, 10, str);
-      panel3.fillTileBG(0, 0, 10, 10, Color.GRAY.getRGB());
+      panel3.writeBox(0, 0, 10, 6, str);
+      panel3.fillTileBG(0, 0, 10, 6, Color.GRAY.getRGB());
       
       str = "ThisIsThePlaceForWordsThatAreTooBigForTheBoxThatHasBeenAssignedToContainThem";
-      panel3.writeBox(0, 11, 16, 4, str);
-      panel3.fillTileBG(0, 11, 16, 4, Color.GRAY.getRGB());
+      panel3.writeBox(0, 7, 16, 3, str);
+      panel3.fillTileBG(0, 7, 16, 3, Color.GRAY.getRGB());
       
-      Vector<int[]> theList = panel3.findText(0, 11, 16, 4, "The");
+      Vector<int[]> theList = panel3.findText(0, 7, 16, 3, "The");
       for(int i = 0; i < theList.size(); i++)
       {
          int startX = theList.elementAt(i)[0];
          int startY = theList.elementAt(i)[1];
          panel3.fillTileFG(startX, startY, 3, 1, Color.CYAN.getRGB());
       }
+      
+      setBoxTiles();
       
       add(panel1);
       add(panel2);
@@ -77,6 +79,41 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
       
       javax.swing.Timer timer = new javax.swing.Timer(1000 / 60, this);
       timer.start();
+   }
+   
+   private void setBoxTiles()
+   {
+      char[][] boxArr = {{'#','#','#','#','#'},
+                         {'#',' ','#',' ','#'},
+                         {'#','#','#','#','#'},
+                         {'#',' ','#',' ','#'},
+                         {'#','#','#','#','#'}};
+      int width = boxArr.length;
+      int height = boxArr[0].length;
+      int[][] adjacencyArr = new int[width][height];
+      for(int x = 0; x < width - 1; x++)
+      for(int y = 0; y < height; y++)
+         if(boxArr[x][y] == '#')
+            adjacencyArr[x+1][y] += ADJACENT_LEFT;
+      for(int x = 1; x < width; x++)
+      for(int y = 0; y < height; y++)
+         if(boxArr[x][y] == '#')
+            adjacencyArr[x-1][y] += ADJACENT_RIGHT;
+      for(int x = 0; x < width; x++)
+      for(int y = 0; y < height - 1; y++)
+         if(boxArr[x][y] == '#')
+            adjacencyArr[x][y+1] += ADJACENT_TOP;
+      for(int x = 0; x < width; x++)
+      for(int y = 1; y < height; y++)
+         if(boxArr[x][y] == '#')
+            adjacencyArr[x][y-1] += ADJACENT_BOTTOM;
+      
+      int startX = 0;
+      int startY = 10;
+      for(int x = 0; x < width; x++)
+      for(int y = 0; y < height; y++)
+         if(boxArr[x][y] == '#')
+            panel3.setTileIndex(x + startX, y + startY, BOX_TILE_ORIGIN + adjacencyArr[x][y]);
    }
    
    public void actionPerformed(ActionEvent ae)
