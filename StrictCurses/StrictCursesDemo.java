@@ -28,7 +28,7 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
       
       panel1 = new SCPanel(palette, 16, 17);
       panel2 = new SCPanel(palette, 16, 17);
-      panel3 = new SCPanel(palette, 16, 17);
+      panel3 = new SCPanel(palette, 16, 20);
       panel2.setMaintainRatio(false);
       
       panel1.writeLine(0, 0, " Maintain Ratio");
@@ -71,6 +71,7 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
       }
       
       setBoxTiles();
+      setWallTiles();
       
       add(panel1);
       add(panel2);
@@ -124,6 +125,27 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
             panel3.setTileIndex(x + startX, y + startY, BOX_TILE_ORIGIN + adjacencyArr[x][y]);
    }
    
+   private void setWallTiles()
+   {
+      char[][] wallArr = {{' ',' ',' ','#',' ',' ',' '},
+                          {' ','#','#','#','#','#',' '},
+                          {' ','#',' ','#',' ','#',' '},
+                          {'#','#','#','#','#','#','#'},
+                          {' ','#',' ','#',' ','#',' '},
+                          {' ','#','#','#','#','#',' '},
+                          {' ',' ',' ','#',' ',' ',' '}};
+      int width = wallArr.length;
+      int height = wallArr[0].length;
+      int[][] adjacencyArr = getAdjacencyArray(wallArr);
+      
+      int startX = 8;
+      int startY = 10;
+      for(int x = 0; x < width; x++)
+      for(int y = 0; y < height; y++)
+         if(wallArr[x][y] == '#')
+            panel3.setTileIndex(x + startX, y + startY, WALL_TILE_ORIGIN + adjacencyArr[x][y]);
+   }
+   
    public void actionPerformed(ActionEvent ae)
    {
       int xLoc = Math.max(Math.max(panel1.getMouseLocTile()[0], panel2.getMouseLocTile()[0]), panel3.getMouseLocTile()[0]);
@@ -133,8 +155,8 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
          panelNum = 2;
       if(panel3.getMouseLocTile()[0] != -1)
          panelNum = 3;
-      panel3.fillTile(0, 16, 16, 1, ' ', DEFAULT_FG_COLOR, DEFAULT_BG_COLOR);
-      panel3.writeLine(0, 16, String.format("Panel%d [%d][%d]", panelNum, xLoc, yLoc));
+      panel3.fillTile(0, 19, 19, 1, ' ', DEFAULT_FG_COLOR, DEFAULT_BG_COLOR);
+      panel3.writeLine(0, 19, String.format("Panel%d [%d][%d]", panelNum, xLoc, yLoc));
       flipColors(panelNum, xLoc, yLoc);
       repaint();
    }
