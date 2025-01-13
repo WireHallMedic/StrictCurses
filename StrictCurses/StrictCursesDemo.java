@@ -71,21 +71,6 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
       
       javax.swing.Timer timer = new javax.swing.Timer(1000 / 60, this);
       timer.start();
-      while(true)
-      {
-         try
-         {
-//             Thread.sleep(500);
-//             int[] loc = panel1.getMouseLocTile();
-//             int[] loc2 = panel2.getMouseLocTile();
-//             System.out.println(String.format("Mouse at [%d, %d], [%d, %d]", loc[0], loc[1], loc2[0], loc2[1]));
-         }
-         catch(Exception ex)
-         {
-            System.out.println("Exception");
-            return;
-         }
-      }
    }
    
    public void actionPerformed(ActionEvent ae)
@@ -97,5 +82,13 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
          panelNum = 2;
       if(panel3.getMouseLocTile()[0] != -1)
          panelNum = 3;
+      panel3.fillTile(0, 16, 16, 1, ' ', DEFAULT_FG_COLOR, DEFAULT_BG_COLOR);
+      panel3.writeLine(0, 16, String.format("Panel%d [%d][%d]", panelNum, xLoc, yLoc));
+      repaint();
+   }
+   
+   public static void main(String[] args)
+   {
+      StrictCursesDemo scd = new StrictCursesDemo();
    }
 }
