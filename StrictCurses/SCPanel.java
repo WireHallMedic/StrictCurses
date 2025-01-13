@@ -37,6 +37,10 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
    public int getTilesTall(){return tilesTall;}
    public boolean getMaintainRatio(){return maintainRatio;}
    public boolean getCenterImage(){return centerImage;}
+   public int getImageWidth(){return imageWidth;}
+   public int getImageHeight(){return imageHeight;}
+   public int getImageXInset(){return imageXInset;}
+   public int getImageYInset(){return imageYInset;}
    
    public void setMaintainRatio(boolean mr){maintainRatio = mr;}
    public void setCenterImage(boolean ci){centerImage = ci;}
