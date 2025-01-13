@@ -114,23 +114,7 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
                          {'#','#','#','#','#'}};
       int width = boxArr.length;
       int height = boxArr[0].length;
-      int[][] adjacencyArr = new int[width][height];
-      for(int x = 0; x < width - 1; x++)
-      for(int y = 0; y < height; y++)
-         if(boxArr[x][y] == '#')
-            adjacencyArr[x+1][y] += ADJACENT_LEFT;
-      for(int x = 1; x < width; x++)
-      for(int y = 0; y < height; y++)
-         if(boxArr[x][y] == '#')
-            adjacencyArr[x-1][y] += ADJACENT_RIGHT;
-      for(int x = 0; x < width; x++)
-      for(int y = 0; y < height - 1; y++)
-         if(boxArr[x][y] == '#')
-            adjacencyArr[x][y+1] += ADJACENT_TOP;
-      for(int x = 0; x < width; x++)
-      for(int y = 1; y < height; y++)
-         if(boxArr[x][y] == '#')
-            adjacencyArr[x][y-1] += ADJACENT_BOTTOM;
+      int[][] adjacencyArr = getAdjacencyArray(boxArr);
       
       int startX = 0;
       int startY = 10;
