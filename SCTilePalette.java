@@ -88,7 +88,7 @@ public class SCTilePalette implements SCConstants
          catch(Exception ex)
          {
             img = null;
-            System.out.println("Unable to load file %s: %s".format(fileName, ex.toString()));
+            System.out.println(String.format("Unable to load file %s: %s", fileName, ex.toString()));
          }
       }
       return img;
