@@ -10,6 +10,12 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
    private SCPanel panel1;
    private SCPanel panel2;
    private SCPanel panel3;
+   
+   private int lastPanel = -1;
+   private int lastX = -1;
+   private int lastY = -1;
+   private int lastFG = 0;
+   private int lastBG = 0;
       
    public StrictCursesDemo()
    {
@@ -84,7 +90,60 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
          panelNum = 3;
       panel3.fillTile(0, 16, 16, 1, ' ', DEFAULT_FG_COLOR, DEFAULT_BG_COLOR);
       panel3.writeLine(0, 16, String.format("Panel%d [%d][%d]", panelNum, xLoc, yLoc));
+      flipColors(panelNum, xLoc, yLoc);
       repaint();
+   }
+   
+   private void flipColors(int p, int x, int y)
+   {
+      // no change if in same tile
+      if(p == lastPanel && x == lastX && y == lastY)
+         return;
+      
+      SCPanel curPanel = null;
+      
+      // revert previous
+      if(lastX != -1 && lastY != -1)
+      {
+         switch(lastPanel)
+         {
+            case 1 : curPanel = panel1; break;
+            case 2 : curPanel = panel2; break;
+            case 3 : curPanel = panel3; break;
+         }
+         if(curPanel != null)
+         {
+            curPanel.setTileFG(lastX, lastY, lastFG);
+            curPanel.setTileBG(lastX, lastY, lastBG);
+            lastFG = -1;
+            lastBG = -1;
+            lastPanel = -1;
+            curPanel = null;
+         }
+      }
+      
+      // no change if mouse not in area
+      if(x == -1 || y == -1)
+         return;
+      
+      // switch colors of current tile
+      switch(p)
+      {
+         case 1 : curPanel = panel1; break;
+         case 2 : curPanel = panel2; break;
+         case 3 : curPanel = panel3; break;
+      }
+      if(curPanel != null)
+      {
+         lastX = x;
+         lastY = y;
+         lastPanel = p;
+         lastFG = curPanel.getTileFGColor(x, y);
+         lastBG = curPanel.getTileBGColor(x, y);
+         curPanel.setTileFG(x, y, lastBG);
+         curPanel.setTileBG(x, y, lastFG);
+      }
+      
    }
    
    public static void main(String[] args)
