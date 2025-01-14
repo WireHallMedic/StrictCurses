@@ -7,7 +7,7 @@
 {\s17\sbasedon16\snext17\rtlch\af9 \ltrch\loch\sl276\slmult1\sb0\sa140 List;}
 {\s18\sbasedon0\snext18\rtlch\af9\afs24\ai \ltrch\loch\sb120\sa120\noline\fs24\i Caption;}
 {\s19\sbasedon0\snext19\rtlch\af9 \ltrch\loch\noline Index;}
-}{\*\generator LibreOffice/7.4.3.2$Windows_X86_64 LibreOffice_project/1048a8393ae2eeec98dff31b5c133c5f1d08b890}{\info{\creatim\yr2025\mo1\dy14\hr6\min37}{\revtim\yr2025\mo1\dy14\hr7\min16}{\printim\yr0\mo0\dy0\hr0\min0}}{\*\userprops}\deftab709
+}{\*\generator LibreOffice/7.4.3.2$Windows_X86_64 LibreOffice_project/1048a8393ae2eeec98dff31b5c133c5f1d08b890}{\info{\creatim\yr2025\mo1\dy14\hr6\min37}{\revtim\yr2025\mo1\dy14\hr7\min45}{\printim\yr0\mo0\dy0\hr0\min0}}{\*\userprops}\deftab709
 \hyphauto1\viewscale100
 {\*\pgdsctbl
 {\pgdsc0\pgdscuse451\pgwsxn12240\pghsxn15840\marglsxn1134\margrsxn1134\margtsxn1134\margbsxn1134\pgdscnxt0 Default Page Style;}}
@@ -22,6 +22,20 @@ StrictCurses allows you to read and write tiles to a grid, displayed as a JPanel
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
 StrictCurses requires a tileset to function, of which two are included. Tilesets must be two-color image files of identically-sized tiles.}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
+
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+General Concepts:}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+Tiles are read in from an image file. Image files are commonly laid out in rows and columns rather than as a strip. References to these indexes can be either as an absolute value, or by their x, y coordinates. For example, on Code Page 437 (a common tileset), the \u8220\'93@\u8221\'94 symbol appears at 0, 4 on a 16x16 table. You can refer to that location as 0, 4, or as 64 (0 + (4 * 16)). char values are based on this, making the index of letters and numbers their char value.}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
+
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+As there are two ways to refer to these indexes, there are commonly two signatures for methods which deal with them; use whichever is more comfortable. Internally, they are handled with single indexes for convenience, and getters generally return the single index.}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
+
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+Colors are stored and passed as integers, rather than as Color objects.}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ab \ltrch\loch\b\loch
@@ -93,95 +107,75 @@ boolean isInBounds(int x, int y)\line Returns true if the passed location is a v
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-void setTile(int x, int y, int index, int fgRGB, int bgRGB)\line Set the icon index (per the SCTilePalette) foreground color, and background color of tile x, y.}
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
-
+void setTile(int x, int y, int index, int fgRGB, int bgRGB)}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
 void setTile(int x, int y, int xIndex, int yIndex, int fgRGB, int bgRGB)\line Set the icon index (per the SCTilePalette) foreground color, and background color of tile x, y.}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-void fillTile(int x, int y, int w, int h, int index, int fgRGB, int bgRGB)\line }
+void fillTile(int x, int y, int w, int h, int index, int fgRGB, int bgRGB)}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+void fillTile(int x, int y, int w, int h, int xIndex, int yIndex, int fgRGB, int bgRGB)\line Set the icon index, foreground color, and background color of all tiles in a box starting at x, y, with a width of w and height of h.}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-void fillTile(int x, int y, int w, int h, int xIndex, int yIndex, int fgRGB, int bgRGB)\line }
+void setTileIndex(int x, int y, int index)}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+void setTileIndex(int x, int y, int xIndex, int yIndex)\line Set the icon index of the tile at x, y.}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-void setTileIndex(int x, int y, int index)\line }
+void fillTileIndex(int x, int y, int w, int h, int index)}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+void fillTileIndex(int x, int y, int w, int h, int xIndex, int yIndex)\line Set the icon index of all tiles in a box starting at x, y, with a width of w and a height of h.}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-void setTileIndex(int x, int y, int xIndex, int yIndex)\line }
+void setTileFG(int x, int y, int fg)\line Set the foreground color the tile at x, y.\line }
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+void fillTileFG(int x, int y, int w, int h, int fg)\line Set the foreground color of all tiles in a box starting at at x, y, with a width of w and a height of h.}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-void fillTileIndex(int x, int y, int w, int h, int index)\line }
+void setTileBG(int x, int y, int bg)\line Set the background color the tile at x, y.}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-void fillTile(int x, int y, int w, int h, int xIndex, int yIndex)\line }
+void fillTileBG(int x, int y, int w, int h, int bg)\line Set the background color of all tiles in a box starting at at x, y, with a width of w and a height of h.\line }
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-void setTileFG(int x, int y, int fg)\line }
+int getTileIndex(int x, int y)}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+Get the tile index of the tile at x, y. Returns -1 if tile is out of bounds.\line }
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-void fillTileFG(int x, int y, int w, int h, int fg)\line }
+int getTileFGColor(int x, int y)}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+Get the foreground color of the tile at x, y. Returns 0 if tile is out of bounds.\line }
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+int getTileBGColor(int x, int y)\line Get the background color of the tile at x, y. Returns 0 if tile is out of bounds.}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-void setTileBG(int x, int y, int bg)\line }
+void writeLine(int startX, int startY, String str)\line Write the passed string, starting at startX, startY, until the string is complete or the end of the row.}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-void fillTileBG(int x, int y, int w, int h, int bg)\line }
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
-
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-int getTileIndex(int x, int y)\line }
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
-
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-int getTileFGColor(int x, int y)\line }
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
-
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-int getTileBGColor(int x, int y)\line }
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
-
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-void writeLine(int startX, int startY, String str)\line }
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
-
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-void writeBox(int startX, int startY, int width, int height, String str)\line }
+void writeBox(int startX, int startY, int width, int height, String str)\line Write the text in a box starting at startX, startY, with the indicated width and height. Strings are split over multiple lines with a preference for splitting on spaces. Any text beyond the bounds of the box is truncated.}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
 Vector<int[]> findText(int originX, int originY, int width, int height, String text)}
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
-
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+Returns a vector of x, y pairs that indicate the starting tile of strings which match the search term. Does not match a string split over multiple lines.}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
 class SCTilePalette}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
 SCTilePalette(String fileName, int tileWidthPx, int tileHeightPx, int bgRGB)\line SCTilePalette(String fileName, int tileWidthPx, int tileHeightPx)\line int getTileWidth()\line int getTileHeight()\line void set(String fileName, int tileWidthPx, int tileHeightPx, int bgRGB)\line BufferedImage loadImage(String fileName)\line SCTileStamp getStamp(int x, int y)\line SCTileStamp getStamp(int index)\line boolean isInBounds(int x, int y)\line boolean isInBounds(int index)\line int xYToIndex(int x, int y)}
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
-
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-class SCTileStamp}
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-\tab public int getWidth()\{return width;\}\line \tab public int getHeight()\{return height;\}\line    public SCTileStamp(BufferedImage img)\line    public SCTileStamp(BufferedImage img, int bgRGB)\line    public void set(BufferedImage img, int bgRGB)\line    public void set(BufferedImage img)\{set(img, Color.BLACK.getRGB());\}\line    public void stampImage(int startX, int startY, BufferedImage image, int fgRGB, int bgRGB)}
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
-
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-class SCTileStruct}
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
-int getCharacterIndex()\{return characterIndex;\}\line int getFGRGB()\{return fgRGB;\}\line int getBGRGB()\{return bgRGB;\}\line void setCharacterIndex(int c)\{characterIndex = c;\}\line void setFGRGB(int fg)\{fgRGB = fg;\}\line void setBGRGB(int bg)\{bgRGB = bg;\}\line SCTileStruct()\line SCTileStruct(int i, int fg, int bg)\line void set(int i, int fg, int bg)\line boolean matches(int index, int fg, int bg)\line boolean matchesIndex(int index)\line boolean matchesFG(int fg)\line boolean matchesBG(int bg)}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
@@ -192,4 +186,42 @@ StrictCursesDemo is a simple function to demonstrate the functionality of this l
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
 interface SCConstants}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai \ltrch\loch\i\loch
+A variety of common constants for the library. In addition to those listed below, there are over two hundred specific to the included tile image files; they are omitted here for brevity. See SCConstants.java for complete list.}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\rtlch\ai \ltrch\loch\i\loch
+
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+static final int DEFAULT_BG_COLOR}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+The integer representation of black.}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\rtlch\ai \ltrch\loch\i\loch
+
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+static final int DEFAULT_FG_COLOR}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+The integer representation of white.}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0
+   }
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+final int BOX_TILE_ORIGIN}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+final int WALL_TILE_ORIGIN}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+static final int ADJACENT_LEFT}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+static final int ADJACENT_RIGHT}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+static final int ADJACENT_TOP}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+static final int ADJACENT_BOTTOM}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+Box-drawing and wall-block-drawing tiles. They are arranged so that you can use addition to get the correct tile. For example, BOX_TILE_ORIGIN + ADJACENT_TOP+ ADJACENT_RIGHT is the index of the box-drawing tile that connects at top and right, like an L. Invalid combinations (box-drawing with less than two connections) will return whatever happens to be in that location, which is not a box-drawing tile.}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\rtlch\ai \ltrch\loch\i\loch
+
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+static final int WALL_DESCENDING_TILE}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+static final int WALL_ASCENDING_TILE}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
+Wall-tile-drawing tiles that are full-tile diagonal lines; like \\ and /, respectively.}
 \par }
