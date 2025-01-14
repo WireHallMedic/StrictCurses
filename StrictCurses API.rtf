@@ -7,7 +7,7 @@
 {\s17\sbasedon16\snext17\rtlch\af9 \ltrch\loch\sl276\slmult1\sb0\sa140 List;}
 {\s18\sbasedon0\snext18\rtlch\af9\afs24\ai \ltrch\loch\sb120\sa120\noline\fs24\i Caption;}
 {\s19\sbasedon0\snext19\rtlch\af9 \ltrch\loch\noline Index;}
-}{\*\generator LibreOffice/7.4.3.2$Windows_X86_64 LibreOffice_project/1048a8393ae2eeec98dff31b5c133c5f1d08b890}{\info{\creatim\yr2025\mo1\dy14\hr6\min37}{\revtim\yr2025\mo1\dy14\hr7\min45}{\printim\yr0\mo0\dy0\hr0\min0}}{\*\userprops}\deftab709
+}{\*\generator LibreOffice/7.4.3.2$Windows_X86_64 LibreOffice_project/1048a8393ae2eeec98dff31b5c133c5f1d08b890}{\info{\creatim\yr2025\mo1\dy14\hr6\min37}{\revtim\yr2025\mo1\dy14\hr7\min47}{\printim\yr0\mo0\dy0\hr0\min0}}{\*\userprops}\deftab709
 \hyphauto1\viewscale100
 {\*\pgdsctbl
 {\pgdsc0\pgdscuse451\pgwsxn12240\pghsxn15840\marglsxn1134\margrsxn1134\margtsxn1134\margbsxn1134\pgdscnxt0 Default Page Style;}}
@@ -142,14 +142,10 @@ void setTileBG(int x, int y, int bg)\line Set the background color the tile at x
 
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
 void fillTileBG(int x, int y, int w, int h, int bg)\line Set the background color of all tiles in a box starting at at x, y, with a width of w and a height of h.\line }
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
-
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
 int getTileIndex(int x, int y)}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
 Get the tile index of the tile at x, y. Returns -1 if tile is out of bounds.\line }
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
-
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
 int getTileFGColor(int x, int y)}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
@@ -172,19 +168,19 @@ Vector<int[]> findText(int originX, int originY, int width, int height, String t
 Returns a vector of x, y pairs that indicate the starting tile of strings which match the search term. Does not match a string split over multiple lines.}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ab \ltrch\loch\b\loch
 class SCTilePalette}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
 SCTilePalette(String fileName, int tileWidthPx, int tileHeightPx, int bgRGB)\line SCTilePalette(String fileName, int tileWidthPx, int tileHeightPx)\line int getTileWidth()\line int getTileHeight()\line void set(String fileName, int tileWidthPx, int tileHeightPx, int bgRGB)\line BufferedImage loadImage(String fileName)\line SCTileStamp getStamp(int x, int y)\line SCTileStamp getStamp(int index)\line boolean isInBounds(int x, int y)\line boolean isInBounds(int index)\line int xYToIndex(int x, int y)}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ab \ltrch\loch\b\loch
 class StrictCursesDemo}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai \ltrch\loch\i\loch
-StrictCursesDemo is a simple function to demonstrate the functionality of this library. Run it, and look over the code.}
+StrictCursesDemo is a simple class to demonstrate the functionality of this library. Run it, and look over the code to see what it\u8217\'92s doing.}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\loch
 
-\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\loch
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ab \ltrch\loch\b\loch
 interface SCConstants}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai \ltrch\loch\i\loch
 A variety of common constants for the library. In addition to those listed below, there are over two hundred specific to the included tile image files; they are omitted here for brevity. See SCConstants.java for complete list.}
@@ -224,4 +220,8 @@ static final int WALL_DESCENDING_TILE}
 static final int WALL_ASCENDING_TILE}
 \par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0 \ltrch\loch\i0\loch
 Wall-tile-drawing tiles that are full-tile diagonal lines; like \\ and /, respectively.}
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar\rtlch\ai \ltrch\loch\i\loch
+
+\par \pard\plain \s0\rtlch\af8\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\widctlpar\hyphpar0\ltrpar\cf0\f3\fs24\lang1033\kerning1\dbch\af10\langfe2052\ql\ltrpar{\rtlch\ai0\ab \ltrch\loch\i0\b\loch
+Some files have been omitted from the API, as they are used internally and not intended for the application programmer to directly call.}
 \par }
