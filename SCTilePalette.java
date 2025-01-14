@@ -60,7 +60,7 @@ public class SCTilePalette implements SCConstants
    }
    
    // load an image from file
-   public BufferedImage loadImage(String fileName)
+   private BufferedImage loadImage(String fileName)
    {
       boolean isJar = false;
       if(SCTilePalette.class.getResource("SCTilePalette.class").toString().contains(".jar"))
