@@ -162,7 +162,7 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
       for(int yy = 0; yy < h; yy++)
          setTileIndex(xx + x, yy + y, index);
    }
-   public void fillTile(int x, int y, int w, int h, int xIndex, int yIndex)
+   public void fillTileIndex(int x, int y, int w, int h, int xIndex, int yIndex)
    {
       for(int xx = 0; xx < w; xx++)
       for(int yy = 0; yy < h; yy++)
