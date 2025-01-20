@@ -71,7 +71,8 @@ public class SCTilePalette implements SCConstants
       }
       catch(Exception ex)
       {
-         System.out.println(String.format("Unable to load file %s: %s", fileName, ex.toString()));
+         System.out.println(String.format("Unable to load file %s: %s\n%s", fileName, ex.toString(),
+            "If running as a .jar, make sure the file's location is listed in the manifest file."));
       }
       return img;
    }

@@ -81,7 +81,7 @@ Returns a vector of x, y pairs that indicate the starting tile of strings which 
 \par
 \b class SCTilePalette\b0\par
 SCTilePalette(String fileName, int tileWidthPx, int tileHeightPx, int bgRGB)\line SCTilePalette(String fileName, int tileWidthPx, int tileHeightPx)\par
-Constructor. Requires the name of the tile image file to load, the width in pixels of each tile, and the height in pixels of each tile. If an explicit background color is not specified, black is used as the default.\par
+Constructor. Requires the name of the tile image file to load, the width in pixels of each tile, and the height in pixels of each tile. If an explicit background color is not specified, black is used as the default. If you are getting an error that the application cannot find the tile image file when running as a .jar, make sure the image file's location is specified in the Class-Path variable in the .jar's manifest.\par
 \line int getTileWidth()\par
 Return the width, in pixels, of each tiles.\par
 \line int getTileHeight()\line Returns the height, in pixels, of each tile.\par
