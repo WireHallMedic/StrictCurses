@@ -62,34 +62,16 @@ public class SCTilePalette implements SCConstants
    // load an image from file
    private BufferedImage loadImage(String fileName)
    {
-      boolean isJar = false;
-      if(SCTilePalette.class.getResource("SCTilePalette.class").toString().contains(".jar"))
-         isJar = true;
       BufferedImage img = null;
-      // try and load resource if we're in a jar
-      if(isJar)
+      if(SCTilePalette.class.getResource("SCTilePalette.class").toString().contains(".jar"))
+         fileName = "/" + fileName;
+      try
       {
-         try
-         {
-            img = ImageIO.read(new File(fileName));
-         }
-         catch(Exception ex)
-         {
-            img = null;
-         }
+         img = ImageIO.read(getClass().getResourceAsStream(fileName));
       }
-      // if no image yet, load local file
-      if(img == null)
+      catch(Exception ex)
       {
-         try
-         {
-            img = ImageIO.read(new File("./" + fileName));
-         }
-         catch(Exception ex)
-         {
-            img = null;
-            System.out.println(String.format("Unable to load file %s: %s", fileName, ex.toString()));
-         }
+         System.out.println(String.format("Unable to load file %s: %s", fileName, ex.toString()));
       }
       return img;
    }
