@@ -271,6 +271,18 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
          setTileIndex(startX + i, startY, str.charAt(i));
    }
    
+   // write a string on a single line, overwriting any additional space with ' '
+   public void overwriteLine(int startX, int startY, String str, int length)
+   {
+      for(int i = 0; i < length; i++)
+      {
+         if(i < str.length())
+            setTileIndex(startX + i, startY, str.charAt(i));
+         else
+            setTileIndex(startX + i, startY, ' ');
+      }
+   }
+   
    // write a string bound within a box, breaking on newlines and as needed
    public void writeBox(int startX, int startY, int width, int height, String str)
    {

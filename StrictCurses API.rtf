@@ -74,6 +74,8 @@ int getTileBGColor(int x, int y)\line Get the background color of the tile at x,
 \par
 void writeLine(int startX, int startY, String str)\line Write the passed string, starting at startX, startY, until the string is complete or the end of the row.\par
 \par
+void overwriteLine(int startX, int startY, String str, int length)\line Write the passed string, starting at startX, startY, for the defined length. Any tiles beyond the str.length() are set to spaces.\par
+\par
 void writeBox(int startX, int startY, int width, int height, String str)\line Write the text in a box starting at startX, startY, with the indicated width and height. Strings are split over multiple lines with a preference for splitting on spaces. Any text beyond the bounds of the box is truncated.\par
 \par
 Vector<int[]> findText(int originX, int originY, int width, int height, String text)\par
