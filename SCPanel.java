@@ -283,6 +283,18 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
       }
    }
    
+   // write a string on a single line, overwriting any additional space with ' ', setting FG and BG colors as well
+   public void overwriteLine(int startX, int startY, String str, int length, int fg, int bg)
+   {
+      for(int i = 0; i < length; i++)
+      {
+         if(i < str.length())
+            setTile(startX + i, startY, str.charAt(i), fg, bg);
+         else
+            setTile(startX + i, startY, ' ', fg, bg);
+      }
+   }
+   
    // write a string bound within a box, breaking on newlines and as needed
    public void writeBox(int startX, int startY, int width, int height, String str)
    {
