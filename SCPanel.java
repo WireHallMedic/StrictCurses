@@ -283,20 +283,9 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
       }
    }
    
-   // write a string on a single line, overwriting any additional space with ' ', setting FG and BG colors as well
-   public void overwriteLine(int startX, int startY, String str, int length, int fg, int bg)
-   {
-      for(int i = 0; i < length; i++)
-      {
-         if(i < str.length())
-            setTile(startX + i, startY, str.charAt(i), fg, bg);
-         else
-            setTile(startX + i, startY, ' ', fg, bg);
-      }
-   }
-   
    // write a string bound within a box, breaking on newlines and as needed
-   public void writeBox(int startX, int startY, int width, int height, String str)
+   // returns the number of rows used, minimum of 1
+   public int writeBox(int startX, int startY, int width, int height, String str)
    {
       // split the string on spaces
       String[] splitList = str.split(" ");
@@ -369,6 +358,10 @@ public class SCPanel extends JPanel implements SCConstants, MouseMotionListener,
             rowNum++;
          }
       }
+      // decrement rowNum for return val if have not written this line
+      if(colNum == 0 && rowNum > 0)
+         rowNum--;
+      return rowNum + 1;
    }
    
    // returns a list of all the instances of the passed text in the specified box.
