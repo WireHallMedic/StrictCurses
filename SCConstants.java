@@ -220,7 +220,7 @@ public interface SCConstants
 	public static final int RIGHT_DOUBLE_ANGLE_TILE = 15 + (10 * 16);
 
 	// row 11
-	public static final int CENTERD_CARET_TILE = 0 + (11 * 16);
+	public static final int CENTERED_CARET_TILE = 0 + (11 * 16);
 	public static final int ROTATED_ASTERIX_TILE = 1 + (11 * 16);
 	public static final int RETICLE_TILE = 2 + (11 * 16);
 	public static final int CENTERED_COMMA_TILE = 4 + (11 * 16);
