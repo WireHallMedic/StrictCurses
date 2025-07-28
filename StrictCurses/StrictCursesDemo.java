@@ -24,7 +24,7 @@ public class StrictCursesDemo extends JFrame implements SCConstants, ActionListe
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setLayout(new GridLayout(1, 3));
       
-      SCTilePalette palette = new SCTilePalette("WidlerTiles_16x16.png", 16, 16, DEFAULT_BG_COLOR);
+      SCTilePalette palette = new SCTilePalette("/StrictCurses/WidlerTiles_16x16.png", 16, 16, DEFAULT_BG_COLOR);
       
       panel1 = new SCPanel(palette, 16, 17);
       panel2 = new SCPanel(palette, 16, 17);
